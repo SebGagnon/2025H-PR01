@@ -22,7 +22,8 @@ def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
     
     # TODO : RÉINITIALISER LA POSITION DE LA BALLE AU CENTRE DU JEU
     # Ici, vous devez redéfinir la position de la balle pour qu'elle soit au centre de la fenêtre du jeu en x (c'est-à-dire, sur la ligne pointillée)
-
+    ball_x = 0.5*SCREEN_WIDTH 
+    ball_y = 0.5*SCREEN_HEIGHT
 
     # TODO : LANCEMENT DE LA BALLE APRÈS RÉINITIALISATION
     # Si le joueur 2 a gagné un point, relancer la balle de son côté (à la gauche) avec une position aléatoire en y (par en haut ou par en bas), à partir de la ligne pointillée
@@ -111,11 +112,16 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #
         # 1. Mettre à jour la position de la balle (les variables "ball_x" et "ball_y") en utilisant les variables "ball_velocity_x" et "ball_velocity_y".
         #
+        ball_x += ball_velocity_x
+        ball_y += ball_velocity_y
         # 2. Gérer les collisions de la balle avec le haut et le bas de la fenêtre de jeu. 
         #    Lorsque la balle atteint le haut ou le bas, sa direction verticale doit être inversée.
-        #
+        if ball_y == 0 or ball_y == SCREEN_HEIGHT:
+            ball_velocity_y = -ball_velocity_y
         # 3. Gérer les collisions entre la balle et les raquettes. 
         #    Lorsque la balle frappe une raquette, sa direction horizontale doit être inversée.
+        if ball_x == PADDLE_WIDTH and player1_y <= ball_y <= player1_y + PADDLE_HEIGHT:
+            ball_velocity_x = -ball_velocity_x
 
         
 
@@ -126,6 +132,12 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #
         # 1. Vous devez implémenter l'ajout de points lorsqu'un joueur manque la balle et qu'elle frappe l'un des murs.
         #
+        if ball_x == 0:
+            player2_score += 1
+            reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y)
+        if ball_x == SCREEN_WIDTH:
+            player1_score += 1
+            reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y)
         # 2. Vous devez également réinitialiser la balle pour qu'elle réapparaisse dans le jeu à l'aide de la fonction "reset_ball" que vous avez implémenté
 
 

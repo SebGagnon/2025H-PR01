@@ -1,4 +1,5 @@
 import pygame
+import random
 from config import *
 from game import play_game
 from menus import main_menu, select_difficulty
@@ -23,8 +24,8 @@ ball_y = 0.5*SCREEN_HEIGHT # Remplacer "0" par votre réponse
 # TODO : INITIALISATION DU MOUVEMENT ALÉATOIRE DE LA BALLE
 # Ici, vous devez implémenter le mouvement de la balle dans une direction aléatoire (en x et en y), en définissant les vecteurs de vitesse de la balle, 
 # c'est-à-dire les variables ball_velocity_x et ball_velocity_y. Pour ce faire, vous devez utiliser les vitesses BALL_SPEED_X et BALL_SPEED_Y définies dans le fichier config.py
-ball_velocity_x = 25*BALL_SPEED_X # Remplacer "0" par votre réponse
-ball_velocity_y = 25*BALL_SPEED_Y # Remplacer "0" par votre réponse
+ball_velocity_x = random.uniform(-1,1)*BALL_SPEED_X # Remplacer "0" par votre réponse
+ball_velocity_y = random.uniform(-1,1)*BALL_SPEED_Y # Remplacer "0" par votre réponse
 
 # Boucle du jeu
 while True:
