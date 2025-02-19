@@ -2,7 +2,7 @@ import random
 
 # Dimensions de l'écran
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_HEIGHT = 500
 
 # Couleurs
 BLACK = (0, 0, 0)
@@ -10,14 +10,14 @@ WHITE = (255, 255, 255)
 
 # Dimensions et vitesse de déplacement des raquettes
 PADDLE_WIDTH = 5
-PADDLE_HEIGHT = 50
+PADDLE_HEIGHT = 40
 paddle_speed = 11
 
 # Taille de la balle
 BALL_SIZE = 5
 
 # Vitesse de la balle
-BALL_SPEED_X = 5
+BALL_SPEED_X = 10
 BALL_SPEED_Y = 5
 
 # Initialisation des points à 0 pour le début du match
