@@ -85,8 +85,13 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #
         # * Note 3 : Lorsque les raquettes atteignent le haut ou le bas de la fenêtre de jeu, elles ne doivent pas dépasser ces limites. 
         #          Assurez-vous que leur position reste dans les bornes définies par la hauteur de l'écran.
-
-
+        if keys[pygame.K_DOWN]:
+            player1_y=player1_y-paddle_speed
+            
+    
+        if keys[pygame.K_UP]:
+            player1_y=player1_y+paddle_speed
+  
 
 
 
