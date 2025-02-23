@@ -10,8 +10,8 @@ WHITE = (255, 255, 255)
 
 # Dimensions et vitesse de déplacement des raquettes
 PADDLE_WIDTH = 5
-PADDLE_HEIGHT = 40
-paddle_speed = 11
+PADDLE_HEIGHT = 400
+paddle_speed = 10
 
 # Taille de la balle
 BALL_SIZE = 5

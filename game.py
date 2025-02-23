@@ -85,12 +85,20 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #
         # * Note 3 : Lorsque les raquettes atteignent le haut ou le bas de la fenêtre de jeu, elles ne doivent pas dépasser ces limites. 
         #          Assurez-vous que leur position reste dans les bornes définies par la hauteur de l'écran.
-        if keys[pygame.K_DOWN]:
-            player1_y=player1_y-paddle_speed
-            
-    
-        if keys[pygame.K_UP]:
-            player1_y=player1_y+paddle_speed
+        if game_mode == 'multi player' :
+            if keys[pygame.K_w]:
+                if player1_y > 0 :
+                    player1_y += -paddle_speed    
+            if keys[pygame.K_s]:
+                if player1_y < SCREEN_HEIGHT-PADDLE_HEIGHT :
+                    player1_y += paddle_speed
+            if keys[pygame.K_UP]:
+                if player2_y > 0 :
+                    player2_y += -paddle_speed    
+            if keys[pygame.K_DOWN]:
+                if player2_y < SCREEN_HEIGHT-PADDLE_HEIGHT :
+                    player2_y += paddle_speed
+
   
 
 
@@ -114,7 +122,32 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #     - Pour le niveau "medium", la vitesse de déplacement de la raquette doit être égale à "paddle_speed - 4"
         #     - Pour le niveau "hard", la vitesse de déplacement de la raquette doit être égale à "paddle_speed"
 
-        
+        if game_mode == 'single player' :
+            chance=random.randint(1,10)
+
+            if chance == 1 :
+                margin=20
+            else :
+                margin=40
+            if difficulty == "easy" :
+                cpu_speed = paddle_speed -5
+            if difficulty == "medium" :
+                cpu_speed = paddle_speed-4
+            if difficulty == "hard" :
+                cpu_speed =  paddle_speed
+            if keys[pygame.K_w]:
+                if player1_y > 0 :
+                    player1_y += -paddle_speed    
+            if keys[pygame.K_s]:
+                if player1_y < SCREEN_HEIGHT-PADDLE_HEIGHT :
+                    player1_y += paddle_speed 
+
+            if player2_y+0.5*PADDLE_WIDTH+margin<ball_y :
+                if player2_y < SCREEN_HEIGHT-PADDLE_HEIGHT :
+                    player2_y += cpu_speed
+            if player2_y+0.5*PADDLE_WIDTH-margin>ball_y :
+                if player2_y > 0 :
+                    player2_y += -cpu_speed
         
 
 
@@ -147,11 +180,11 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         # 2. Vous devez également réinitialiser la balle pour qu'elle réapparaisse dans le jeu à l'aide de la fonction "reset_ball" que vous avez implémenté
 
         if ball_x < 0 :
-            
+            player2_score +=10
             (ball_x, ball_y, ball_velocity_x, ball_velocity_y)=reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y)
             
         if ball_x > SCREEN_WIDTH :
-            
+             player1_score += 1
              (ball_x, ball_y, ball_velocity_x, ball_velocity_y)=reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y)
 
 
