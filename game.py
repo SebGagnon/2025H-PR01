@@ -29,12 +29,12 @@ def reset_ball(ball_x, ball_y, ball_velocity_x, ball_velocity_y):
         ball_x=0.5*SCREEN_WIDTH
         ball_y=random.uniform(0,1)*SCREEN_HEIGHT
         ball_velocity_x=-ball_velocity_x   
-        ball_velocity_y=random.uniform(0,1)*BALL_SPEED_Y
+        
     if ball_x > SCREEN_WIDTH :
         ball_x=0.5*SCREEN_WIDTH
         ball_y=random.uniform(0,1)*SCREEN_HEIGHT
         ball_velocity_x=-ball_velocity_x  
-        ball_velocity_y=random.uniform(0,1)*BALL_SPEED_Y
+        
     
     return ball_x, ball_y, ball_velocity_x, ball_velocity_y
 
@@ -125,18 +125,21 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
         #     - Pour le niveau "hard", la vitesse de déplacement de la raquette doit être égale à "paddle_speed"
 
         if game_mode == 'single player' :
+
             chance=random.randint(1,10)
 
-            if chance == 1 :
-                margin=20
-            else :
+            if chance == 5 :
                 margin=40
+            else :
+                margin=20
+
             if difficulty == "easy" :
                 cpu_speed = paddle_speed -5
             if difficulty == "medium" :
                 cpu_speed = paddle_speed-4
             if difficulty == "hard" :
                 cpu_speed =  paddle_speed
+                
             if keys[pygame.K_w]:
                 if player1_y > 0 :
                     player1_y += -paddle_speed    
@@ -144,10 +147,12 @@ def play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y
                 if player1_y < SCREEN_HEIGHT-PADDLE_HEIGHT :
                     player1_y += paddle_speed 
 
-            if player2_y+0.5*PADDLE_WIDTH+margin<ball_y :
-                if player2_y < SCREEN_HEIGHT-PADDLE_HEIGHT :
+            # Balle en dessous du paddle
+            if player2_y+(0.5*PADDLE_HEIGHT)+margin<ball_y :
+                if player2_y+PADDLE_HEIGHT<SCREEN_HEIGHT :
                     player2_y += cpu_speed
-            if player2_y+0.5*PADDLE_WIDTH-margin>ball_y :
+            # Balle en haut du paddle
+            if player2_y+(0.5*PADDLE_HEIGHT)-margin>ball_y :
                 if player2_y > 0 :
                     player2_y += -cpu_speed
         

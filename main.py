@@ -26,8 +26,8 @@ ball_y = 0.5*SCREEN_HEIGHT # Remplacer "0" par votre réponse
 # c'est-à-dire les variables ball_velocity_x et ball_velocity_y. Pour ce faire, vous devez utiliser les vitesses BALL_SPEED_X et BALL_SPEED_Y définies dans le fichier config.py
 direction=[-1,1]
 ball_velocity_x = random.choice(direction)*BALL_SPEED_X # Remplacer "0" par votre réponse
-ball_velocity_y = random.uniform(-1,1)*BALL_SPEED_Y # Remplacer "0" par votre réponse
-
+ball_velocity_y = random.choice(direction)*BALL_SPEED_Y # Remplacer "0" par votre réponse
+# J'ai choisi de toujours lancer la balle à 45 degrées, au lieu d'avoir un angle et une vitesse aléatoire. Cela évite des problèmes du genre la balle est totalement horizontale et le jeu est trop facile alors.
 # Boucle du jeu
 while True:
     play_game(player1_y, player2_y, player1_score, player2_score, ball_x, ball_y, ball_velocity_x, ball_velocity_y) 
